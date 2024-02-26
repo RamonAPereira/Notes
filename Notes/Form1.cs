@@ -44,12 +44,18 @@ namespace Notes
 
         private void editNote_Click(object sender, EventArgs e)
         {
-
         }
 
         private void deleteNote_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                notes.Rows[pastNotes.CurrentCell.RowIndex].Delete();
+            }
+            catch(Exception exception) 
+            {
+                Console.WriteLine("Invalid note");
+            }
         }
     }
 }
