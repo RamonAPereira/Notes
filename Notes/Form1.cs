@@ -12,7 +12,6 @@ namespace Notes
 {
     public partial class NoteTaker : Form
     {
-        DataSet notesData  = new DataSet();
         DataTable notes = new DataTable();
         bool IsEditing = false;
         public NoteTaker()
@@ -24,8 +23,7 @@ namespace Notes
         {
             notes.Columns.Add("Title");
             notes.Columns.Add("Note");
-            notesData.Tables.Add(notes);
-            pastNotes.DataSource = notesData.Tables[0];
+            pastNotes.DataSource = notes;
         }
 
         private void newNote_Click(object sender, EventArgs e)
