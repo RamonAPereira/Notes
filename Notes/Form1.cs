@@ -22,7 +22,6 @@ namespace Notes
 
         private void NoteTaker_Load(object sender, EventArgs e)
         {
-            notes.Columns.Add("Id", typeof(int));
             notes.Columns.Add("Title");
             notes.Columns.Add("Note");
             notesData.Tables.Add(notes);
@@ -30,7 +29,9 @@ namespace Notes
         }
 
         private void newNote_Click(object sender, EventArgs e)
-        {    
+        {
+            titleBox.Clear();
+            noteBox.Clear();
         }
 
         private void saveNote_Click(object sender, EventArgs e)
