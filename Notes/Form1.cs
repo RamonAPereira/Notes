@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Notes.Entities;
 
 namespace Notes
 {
@@ -34,7 +35,11 @@ namespace Notes
 
         private void saveNote_Click(object sender, EventArgs e)
         {
+            Note newNote = new Note(titleBox.Text, noteBox.Text);
+            notes.Rows.Add(newNote.Title,newNote.NoteBody);
 
+            titleBox.Clear();
+            noteBox.Clear();
         }
 
         private void editNote_Click(object sender, EventArgs e)
