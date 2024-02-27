@@ -35,8 +35,18 @@ namespace Notes
 
         private void saveNote_Click(object sender, EventArgs e)
         {
-            Note newNote = new Note(titleBox.Text, noteBox.Text);
-            notes.Rows.Add(newNote.Title,newNote.NoteBody);
+            if (IsEditing)
+            {
+                notes.Rows[pastNotes.CurrentCell.RowIndex]["Title"] = titleBox.Text;
+                notes.Rows[pastNotes.CurrentCell.RowIndex]["Note"] = noteBox.Text;
+
+                IsEditing = false;
+            }
+            else
+            {
+                Note newNote = new Note(titleBox.Text, noteBox.Text);
+                notes.Rows.Add(newNote.Title, newNote.NoteBody);
+            }
 
             titleBox.Clear();
             noteBox.Clear();
@@ -44,6 +54,9 @@ namespace Notes
 
         private void editNote_Click(object sender, EventArgs e)
         {
+            IsEditing = true;
+            titleBox.Text = notes.Rows[pastNotes.CurrentCell.RowIndex].ItemArray[0].ToString() ;
+            noteBox.Text = notes.Rows[pastNotes.CurrentCell.RowIndex].ItemArray[1].ToString() ;
         }
 
         private void deleteNote_Click(object sender, EventArgs e)
